@@ -1,0 +1,77 @@
+---
+const pageTitle = "About Me";
+
+const identity = {
+  firstName: "Jack",
+  occupation: "Student",
+  country: "United States",
+  hobbies: [
+    "programming",
+    "robotics",
+    "learning",
+    "gaming",
+    "reading",
+    "making custom keyboards",
+    "watches",
+    "mechanical pencils",
+    "model airplanes",
+    "sailing",
+    "sleeping",
+  ],
+};
+
+function getRandomHobbies(numHobbies) {
+  let hobbies = [];
+
+  while (hobbies.length < numHobbies) {
+    let hobby = identity.hobbies.at(
+      Math.floor(Math.random() * identity.hobbies.length)
+    );
+
+    if (hobbies.includes(hobby)) continue;
+
+    hobbies.push(hobby);
+  }
+
+  return hobbies;
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/blog/">Blog</a>
+
+    <h1>{pageTitle}</h1>
+    <h2>...and my new Astro Site!</h2>
+
+    <p>
+      I am working through Astro's tutorial. This is the second page I am
+      making.
+    </p>
+
+    <p>
+      This site will update as I progress through the tutorial, so check back
+      often!
+    </p>
+
+    <p>Here are a few facts about me:</p>
+    <ul>
+      <li>My name is {identity.firstName}.</li>
+      <li>I live in {identity.country}, and am a {identity.occupation}.</li>
+      {
+        identity.hobbies.length >= 2 && (
+          <li>Two of my hobbies are: {getRandomHobbies(2).join(" and ")}</li>
+        )
+      }
+    </ul>
+  </body>
+</html>
